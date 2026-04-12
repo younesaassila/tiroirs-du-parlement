@@ -1,0 +1,79 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["main"]
+    tags-ignore: ["**"]
+    paths:
+      - ".github/workflows/deploy.yml"
+      - "poetry.lock"
+      - "pyproject.toml"
+      - "src/**"
+      - "tests/**"
+      - "web/**"
+  schedule:
+    - cron: "37 13 * * 0"
+      timezone: "Europe/Paris"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: 3.12
+  POETRY_VERSION: 2.2
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install Poetry
+        run: |
+          pipx install poetry~=${{ env.POETRY_VERSION }} --python ${{ env.PYTHON_VERSION }}
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+      - name: Cache virtual environment
+        uses: actions/cache@v5
+        with:
+          path: ./.venv/
+          key: venv-${{ hashFiles('poetry.lock') }}
+      - name: Install dependencies
+        run: poetry install --with dev
+      - name: Restore data from cache
+        id: cache-data-restore
+        uses: actions/cache/restore@v5
+        with:
+          path: ./data/
+          key: data-${{ runner.os }}
+      - name: Download data
+        run: poetry run download_data
+      - name: Delete existing data cache # Fixes "Failed to save: Unable to reserve cache with key KEY, another job may be creating this cache."
+        if: ${{ steps.cache-data-restore.outputs.cache-hit == 'true' }}
+        run: gh cache delete ${{ steps.cache-data-restore.outputs.cache-primary-key }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+      - name: Save data to cache
+        uses: actions/cache/save@v5
+        with:
+          path: ./data/
+          key: ${{ steps.cache-data-restore.outputs.cache-primary-key }}
+      - name: Generate output
+        run: poetry run generate_output
+      - name: Copy website files to dist
+        run: cp -a ./web/. ./dist/
+      - name: Deploy website
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist

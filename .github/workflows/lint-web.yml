@@ -1,0 +1,29 @@
+name: Lint Web
+
+on:
+  push:
+    branches: ["**"]
+    tags-ignore: ["**"]
+    paths:
+      - ".github/workflows/lint-web.yml"
+      - "web/**"
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: ["**"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PRETTIER_VERSION: 3.8.1
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Run formatter
+        run: npx -y prettier@${{ env.PRETTIER_VERSION }} --check ./web/ --end-of-line auto

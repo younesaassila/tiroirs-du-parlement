@@ -1,0 +1,30 @@
+[project]
+name = "tiroirs_du_parlement"
+version = "0.0.0"
+description = "Propositions de loi adoptées par l'une des chambres du Parlement, toujours en attente d'inscription à l'ordre du jour de l'autre chambre."
+authors = [{ name = "Younes Aassila", email = "contact@aassila.com" }]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+requires-python = ">=3.12,<4.0"
+dependencies = ["requests (>=2.33.1,<3.0.0)", "roman (>=5.2,<6.0)"]
+
+[dependency-groups]
+dev = ["black (>=26.3.1,<27.0.0)", "flake8 (>=7.3.0,<8.0.0)"]
+
+[project.scripts]
+download_data = "tiroirs_du_parlement.download_data:download_data"
+generate_output = "tiroirs_du_parlement.generate_output:generate_output"
+serve_website = "tiroirs_du_parlement.serve_website:serve_website"
+
+[project.urls]
+Repository = "https://github.com/younesaassila/tiroirs-du-parlement.git"
+
+
+[tool.poetry]
+packages = [{ include = "tiroirs_du_parlement", from = "src" }]
+
+
+[build-system]
+requires = ["poetry-core>=2.2.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

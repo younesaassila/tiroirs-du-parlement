@@ -1,0 +1,58 @@
+.pico-color-primary {
+  color: var(--pico-primary, #01aaff);
+}
+
+.pico-color-secondary {
+  color: var(--pico-secondary, #969eaf);
+}
+
+nav details.dropdown > summary + ul {
+  width: unset;
+  left: unset;
+}
+
+#filters {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  #grid {
+    grid-template-columns: fit-content(30%) auto;
+    column-gap: 0;
+  }
+
+  #filters {
+    margin-right: var(--pico-grid-column-gap);
+  }
+}
+
+#list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.bill {
+  content-visibility: auto;
+  contain-intrinsic-height: auto 250px;
+}
+
+.bill.lapsed {
+  opacity: 0.5;
+}
+
+.bill div[role="group"] {
+  margin-bottom: 0;
+}
+
+.bill .bill-uid {
+  text-align: right;
+}
+
+.bill .bill-link {
+  margin-left: 0.5rem;
+}
+
+.bill.lapsed .bill-link {
+  --pico-color: var(--pico-secondary);
+  --pico-underline: var(--pico-secondary-underline);
+}

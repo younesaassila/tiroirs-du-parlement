@@ -1,0 +1,49 @@
+name: Lint Python
+
+on:
+  push:
+    branches: ["**"]
+    tags-ignore: ["**"]
+    paths:
+      - ".github/workflows/lint-python.yml"
+      - "src/**"
+      - "tests/**"
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: ["**"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: 3.12
+  POETRY_VERSION: 2.2
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install Poetry
+        run: |
+          pipx install poetry~=${{ env.POETRY_VERSION }} --python ${{ env.PYTHON_VERSION }}
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+      - name: Cache virtual environment
+        uses: actions/cache@v5
+        with:
+          path: ./.venv/
+          key: venv-${{ hashFiles('poetry.lock') }}
+      - name: Install dependencies
+        run: poetry install --with dev
+      - name: Run formatter
+        run: poetry run black --check ./src/ ./tests/
+      - name: Run linter
+        run: poetry run flake8 ./src/ ./tests/
