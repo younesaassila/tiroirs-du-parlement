@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Tiroirs du Parlement</title>
+    <meta
+      name="description"
+      content="Propositions de loi adoptées par l'une des chambres du Parlement, toujours en attente d'inscription à l'ordre du jour de l'autre chambre."
+    />
+    <meta
+      name="keywords"
+      content="navette parlementaire, obstruction parlementaire, assemblée nationale, sénat, parlement français"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body>
+    <header class="container">
+      <hgroup>
+        <h1>Tiroirs du Parlement</h1>
+        <p>
+          Propositions de loi adoptées par l'une des chambres du Parlement,
+          toujours en attente d'inscription à l'ordre du jour de l'autre
+          chambre.
+        </p>
+      </hgroup>
+      <nav>
+        <ul>
+          <li>
+            <details class="dropdown">
+              <summary role="button" class="secondary">Chambre</summary>
+              <ul>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="house"
+                      id="house-SN"
+                      value="SN"
+                      checked
+                    />Sénat</label
+                  >
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="house"
+                      id="house-AN"
+                      value="AN"
+                    />Assemblée nationale</label
+                  >
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <hgroup>
+        <h2 id="title">Dans les tiroirs</h2>
+        <p>
+          Certaines mesures de ces propositions de loi ont pu être promulguées
+          dans d'autres textes.
+        </p>
+      </hgroup>
+      <input
+        type="search"
+        name="search"
+        placeholder="Rechercher"
+        aria-label="Rechercher"
+      />
+      <label>
+        <input type="checkbox" name="show-filters" role="switch" />
+        Afficher les filtres
+      </label>
+      <div id="grid" class="grid">
+        <div>
+          <form id="filters">
+            <fieldset role="radiogroup">
+              <legend>Trier par :</legend>
+              <label>
+                <input type="radio" name="sort" value="oldest" checked />
+                Plus anciens
+              </label>
+              <label>
+                <input type="radio" name="sort" value="newest" />
+                Plus récents
+              </label>
+            </fieldset>
+            <label for="min-wait-time" id="min-wait-time-label"
+              >En attente depuis au moins :</label
+            >
+            <input
+              type="range"
+              name="min-wait-time"
+              id="min-wait-time"
+              min="0"
+              max="60"
+              value="12"
+            />
+            <label>
+              <input type="checkbox" name="lapsed-bills" />
+              Inclure les textes caducs (Assemblée nationale)
+            </label>
+            <fieldset id="readings">
+              <legend>Lecture :</legend>
+            </fieldset>
+            <fieldset id="procedures">
+              <legend>Procédure :</legend>
+            </fieldset>
+          </form>
+        </div>
+        <ol id="list"></ol>
+      </div>
+    </main>
+
+    <footer class="container">
+      <small>
+        Créé par
+        <a
+          href="https://younesaassila.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Younes Aassila</a
+        >
+        •
+        <a
+          href="https://github.com/younesaassila/tiroirs-du-parlement"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Code source (GitHub)</a
+        >
+        • Dernière mise à jour le <time id="last-updated" datetime=""></time>
+      </small>
+      <br />
+      <small>
+        Données extraites du
+        <a
+          href="https://data.assemblee-nationale.fr/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >portail open data de l'Assemblée nationale</a
+        >
+        et de
+        <a
+          href="https://data.senat.fr/dosleg/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >la base DOSLEG du Sénat</a
+        >.
+      </small>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
