@@ -7,10 +7,10 @@ readme = "README.md"
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
 requires-python = ">=3.12,<4.0"
-dependencies = ["requests (>=2.33.1,<3.0.0)", "roman (>=5.2,<6.0)"]
+dependencies = ["requests (>=2.34.2,<3.0.0)", "roman (>=5.2,<6.0)"]
 
 [dependency-groups]
-dev = ["black (>=26.3.1,<27.0.0)", "flake8 (>=7.3.0,<8.0.0)"]
+dev = ["black (>=26.5.1,<27.0.0)", "flake8 (>=7.4.0,<8.0.0)"]
 
 [project.scripts]
 download_data = "tiroirs_du_parlement.download_data:download_data"
