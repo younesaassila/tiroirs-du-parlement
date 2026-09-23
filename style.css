@@ -6,6 +6,48 @@
   color: var(--pico-secondary, #969eaf);
 }
 
+header {
+  margin-top: var(--pico-spacing);
+}
+
+footer {
+  margin-bottom: var(--pico-spacing);
+}
+
+.brand {
+  --gap: var(--pico-spacing);
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: var(--gap);
+  row-gap: calc(var(--gap) / 2);
+}
+
+.brand hgroup {
+  display: contents;
+}
+
+.logo {
+  grid-column: 1;
+  grid-row: 1;
+  width: 2rem; /* Match h1's --pico-font-size value */
+  height: auto;
+}
+
+.brand hgroup h1 {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  text-box: trim-both cap alphabetic;
+}
+
+.brand hgroup p {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0;
+}
+
 nav details.dropdown > summary + ul {
   width: unset;
   left: unset;
@@ -28,6 +70,7 @@ nav details.dropdown > summary + ul {
 
 #list {
   list-style: none;
+  margin-bottom: 0;
   padding-left: 0;
 }
 
