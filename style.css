@@ -74,13 +74,13 @@ nav details.dropdown > summary + ul {
   padding-left: 0;
 }
 
-.bill {
-  content-visibility: auto;
-  contain-intrinsic-height: auto 250px;
-}
-
 .bill.lapsed {
   opacity: 0.5;
+}
+
+.bill > article {
+  content-visibility: auto;
+  contain-intrinsic-height: auto 250px;
 }
 
 .bill div[role="group"] {
