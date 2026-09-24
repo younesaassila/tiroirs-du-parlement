@@ -8,6 +8,7 @@ from datetime import datetime
 from pathlib import Path
 
 import roman
+
 from tiroirs_du_parlement.config import DATA_PATH, OUTPUT_PATH
 from tiroirs_du_parlement.schemas import ActeLegislatif, DossierParlementaire
 from tiroirs_du_parlement.types import OrdreDuJour, StalledDossier, StalledDossierStep
