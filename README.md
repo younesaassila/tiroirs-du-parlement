@@ -2,7 +2,7 @@
 
 Propositions de loi adoptées par l'une des chambres du Parlement, toujours en attente d'inscription à l'ordre du jour de l'autre chambre.
 
-<https://tiroirsduparlement.aassila.com/>
+<https://tiroirsduparlement.aassila.com>
 
 ## Méthodologie
 
@@ -25,9 +25,9 @@ Sont marqués comme caducs les dossiers législatifs dont la dernière étape de
 
 Les critères de sélection actuels ont plusieurs effets potentiellement contre-intuitifs :
 
-- un dossier législatif dont le texte a été inscrit à l'ordre du jour à un moment donné, puis retiré ou reporté sans avoir été débattu en séance publique, reste **retenu** : seule l'absence du texte à l'ordre du jour _à la date d'extraction des données_ est vérifiée, indépendamment de ses inscriptions passées ;
+- un dossier législatif dont le texte a été inscrit à l'ordre du jour à un moment donné, puis retiré sans avoir été débattu en séance publique, reste **retenu** : seule l'absence du texte à l'ordre du jour à la date d'extraction des données est vérifiée, indépendamment de ses inscriptions passées ;
 - un dossier législatif dont la dernière étape de lecture a fait l'objet d'un débat en séance publique est **exclu**, y compris lorsque ce débat n'a pas abouti à un vote : c'est la tenue de la séance publique elle-même, et non son issue, qui détermine l'exclusion ;
-- un dossier législatif dont la dernière étape de lecture est la commission mixte paritaire est **exclu**, y compris lorsque cette commission a abouti à un désaccord sans nouvelle lecture.
+- un dossier législatif dont la dernière étape de lecture est la commission mixte paritaire est **exclu**, y compris lorsque cette commission a abouti à un désaccord sans nouvelle lecture à ce jour.
 
 De plus, faute d'information disponible dans les données open data, les dossiers législatifs dont le texte a été retiré ou abandonné, ou dont les dispositions ont depuis été reprises dans d'autres textes promulgués, ne sont pas exclus (cf. [#2](https://github.com/younesaassila/tiroirs-du-parlement/issues/2)).
 
