@@ -69,7 +69,7 @@ def _download_file(
     print(f"Downloading `{path}`…")
 
     headers = {"If-None-Match": meta.etag} if meta.etag else {}
-    with session.get(url, headers=headers, stream=True) as r:
+    with session.get(url, headers=headers) as r:
         r.raise_for_status()
         if "ETag" in r.headers:
             meta.etag = r.headers["ETag"]
