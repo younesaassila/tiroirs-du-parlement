@@ -47,13 +47,13 @@ poetry install --with dev
 ### Données
 
 ```powershell
-poetry run download_data
+poetry run download-data
 ```
 
 ## Utilisation
 
 ```powershell
-poetry run generate_output
+poetry run generate-output
 ```
 
 Résultat enregistré dans `dist/output.json`.
@@ -61,5 +61,5 @@ Résultat enregistré dans `dist/output.json`.
 ## Développement
 
 ```powershell
-poetry run serve_website
+poetry run serve-website
 ```

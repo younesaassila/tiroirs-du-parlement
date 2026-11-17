@@ -57,7 +57,7 @@ jobs:
           path: ./data/
           key: data-${{ runner.os }}
       - name: Download data
-        run: poetry run download_data
+        run: poetry run download-data
       - name: Delete existing data cache # Fixes "Failed to save: Unable to reserve cache with key KEY, another job may be creating this cache."
         if: ${{ steps.cache-data-restore.outputs.cache-hit == 'true' }}
         run: gh cache delete ${{ steps.cache-data-restore.outputs.cache-primary-key }}
@@ -70,7 +70,7 @@ jobs:
           path: ./data/
           key: ${{ steps.cache-data-restore.outputs.cache-primary-key }}
       - name: Generate output
-        run: poetry run generate_output
+        run: poetry run generate-output
       - name: Copy website files to dist
         run: cp -a ./web/. ./dist/
       - name: Deploy website
