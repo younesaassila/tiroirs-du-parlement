@@ -11,7 +11,7 @@
     />
     <meta
       name="keywords"
-      content="navette parlementaire, obstruction parlementaire, assemblée nationale, sénat, parlement français"
+      content="navette parlementaire, obstruction parlementaire, blocage parlementaire, assemblée nationale, sénat, parlement français"
     />
     <link
       rel="stylesheet"
@@ -63,6 +63,15 @@
               </ul>
             </details>
           </li>
+          <li>
+            <button
+              class="secondary"
+              data-target="modal-about"
+              onclick="toggleModal(event)"
+            >
+              À propos
+            </button>
+          </li>
         </ul>
       </nav>
     </header>
@@ -71,8 +80,8 @@
       <hgroup>
         <h2 id="title">Dans les tiroirs</h2>
         <p>
-          Certaines mesures de ces propositions de loi ont pu être promulguées
-          dans d'autres textes.
+          Certaines dispositions de ces propositions de loi ont pu être reprises
+          dans d'autres textes promulgués.
         </p>
       </hgroup>
       <input
@@ -126,43 +135,65 @@
       </div>
     </main>
 
-    <footer class="container">
-      <small>
-        Créé par
-        <a
-          href="https://younesaassila.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Younes Aassila</a
-        >
-        •
-        <a
-          href="https://github.com/younesaassila/tiroirs-du-parlement"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Code source (GitHub)</a
-        >
-        • Dernière mise à jour le <time id="last-updated" datetime=""></time>
-      </small>
-      <br />
-      <small>
-        Données extraites du
-        <a
-          href="https://data.assemblee-nationale.fr/"
-          target="_blank"
-          rel="noopener noreferrer"
-          >portail open data de l'Assemblée nationale</a
-        >
-        et de
-        <a
-          href="https://data.senat.fr/dosleg/"
-          target="_blank"
-          rel="noopener noreferrer"
-          >la base DOSLEG du Sénat</a
-        >.
-      </small>
-    </footer>
+    <dialog id="modal-about">
+      <article>
+        <header>
+          <button
+            aria-label="Fermer"
+            rel="prev"
+            data-target="modal-about"
+            onclick="toggleModal(event)"
+          ></button>
+          <p>
+            <strong>À propos</strong>
+          </p>
+        </header>
+        <p>
+          Créé par
+          <a
+            href="https://younesaassila.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Younes Aassila</a
+          >
+          •
+          <a
+            href="https://github.com/younesaassila/tiroirs-du-parlement#m%C3%A9thodologie"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Méthodologie</a
+          >
+          •
+          <a
+            href="https://github.com/younesaassila/tiroirs-du-parlement"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Code source (GitHub)</a
+          >
+        </p>
+        <p>
+          Données extraites du
+          <a
+            href="https://data.assemblee-nationale.fr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >portail open data de l'Assemblée nationale</a
+          >
+          et de
+          <a
+            href="https://data.senat.fr/dosleg/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >la base DOSLEG du Sénat</a
+          >.
+        </p>
+        <small
+          >Dernière mise à jour le <time id="last-updated" datetime=""></time
+        ></small>
+      </article>
+    </dialog>
 
+    <script src="modal.js"></script>
     <script type="module" src="app.js"></script>
   </body>
 </html>
